@@ -2,12 +2,18 @@ package com.github.agatagolonka.GuessGame;
 
 public class SaySomething {
     private String message;
+//klasa odpowiedzialna za wyświetlanie komunikatu, czy powinnam np. stworzyć nadrzędną klasę Say something,
+// która w argumencie będzie przyjmowała co ma powiedzieć?
 
     SaySomething() {
     }
 
-    protected void askForRange() {
-        System.out.println("Podaj zakres z jakiego chcesz żebym wylosował liczbę?");
+    protected void askForStartRange() {
+        System.out.println("Podaj zakres z jakiego chcesz żebym wylosował liczbę? Podaj początek zakresu");
+    }
+
+    protected void askForEndRange() {
+        System.out.println("Podaj zakres z jakiego chcesz żebym wylosował liczbę? Podaj koniec zakresu");
     }
 
     protected void isDrawn() {

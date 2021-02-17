@@ -6,8 +6,16 @@ import java.util.StringTokenizer;
 public class GenerateDigit {
     private int hideDigit;
 
-    GenerateDigit(DrawRange range) {
-        StringTokenizer st = new StringTokenizer(range.giveMeARange());//8
+    GenerateDigit() {
+    }
+
+    //co tu przekazywać, DrawRange?, int start, end? w tej formie losuje liczbę z podanego zakresu
+    public void setHideDigit(int start, int end) {
+        //DrawRange setRange=new DrawRange();
+        Random rand = new Random();
+        this.hideDigit = rand.nextInt(end-start+1) + start;
+
+        /*StringTokenizer st = new StringTokenizer(range.giveMeARange());//8
         Random rand = new Random();//9
 
         int start = Integer.parseInt(st.nextToken(), 10);
@@ -15,8 +23,9 @@ public class GenerateDigit {
         int end = Integer.parseInt(st.nextToken(), 10);
 
 
-        this.hideDigit = rand.nextInt(end) + start;
+        this.hideDigit = rand.nextInt(end) + start;*/
     }
+
 
     protected int giveMeYouValue() {
         return this.hideDigit;

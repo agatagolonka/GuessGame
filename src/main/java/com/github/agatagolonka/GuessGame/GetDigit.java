@@ -15,7 +15,7 @@ public class GetDigit {
         this.digitFromUser = new Scanner(System.in).nextInt();
     }
 
-    protected int giveMeYouValue() {
+    /*protected int giveMeYouValue() {
         return this.digitFromUser;
-    }
+    }*/
 }
