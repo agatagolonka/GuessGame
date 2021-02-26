@@ -5,33 +5,35 @@ public class Main {
 
     public static void main(String[] args) {
 
-        final SaySomething SayMeStart = new SaySomething();
-        final SaySomething SayMeEnd = new SaySomething();
-        final DrawRange range = new DrawRange();
-        final AskUser startRange = new AskUser();
-        final AskUser endRange = new AskUser();
-        final GenerateDigit hideDigit = new GenerateDigit();
-        final SaySomething ask = new SaySomething();
-        CheckDigit compareDigit = new CheckDigit();
-        AskUser userDigit = new AskUser();
+        System.out.println(Messages.START.giveMsg());
+        GetDigit num1=new GetDigit();
+        GetDigit num2=new GetDigit();
+        DrawRange ran=new DrawRange();
+        ran.SetRange(num1,num2);
+        GenerateDigit hideDigit=ran.generate();
+        System.out.println(Messages.LOS.giveMsg());
+        Hints hint;
+        Hints toLow=new ToLow();
+        Hints toHigh=new ToHigh();
 
-        //czy obiekty tworzyć u góry czy jak jest potrzeba?
-
-        SayMeStart.askForStartRange();
-        int start=range.findStartRange(startRange.AskUserAboutDigit());
-
-        SayMeEnd.askForEndRange();
-        int end = range.findStartRange(endRange.AskUserAboutDigit());
-        hideDigit.setHideDigit(start,end);
-        int digitFromUser;
-        
-        ask.askAboutDigit();
         do{
-            digitFromUser = userDigit.AskUserAboutDigit();
-            System.out.println(compareDigit.checkIsWin(hideDigit.giveMeYouValue(), digitFromUser));
-            //System.out.println("sdfg");
-        }while(compareDigit.checkIsWin(hideDigit.giveMeYouValue(), digitFromUser)!="Brawo!");
-
+            System.out.println(Messages.ASK.giveMsg());
+            num2.setDigit();
+            switch (hideDigit.compareTo(num2.userDigit())) {
+                case -1:
+                    hint=toLow;
+                    break;
+                case 0:
+                    hint=new YouGuess();
+                    break;
+                case 1:
+                    hint=toHigh;
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + hideDigit.compareTo(num2.userDigit()));
+            }
+            System.out.println(hint.giveAnswer());
+        }while(hint.KeepPlaying);
 
 
     }
